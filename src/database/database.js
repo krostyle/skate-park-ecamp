@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import configurations from "../config";
+const { Sequelize } = require('sequelize');
+const configurations = require('../config/config');
 
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
     configurations.DB_NAME,
     configurations.DB_USER,
     configurations.DB_PASSWORD, {
@@ -16,3 +16,5 @@ export const sequelize = new Sequelize(
         logging: false
     }
 );
+
+module.exports = sequelize;

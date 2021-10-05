@@ -1,4 +1,4 @@
-import app from './server';
+const app = require('./server/server')
 
 app.listen(app.get("port"), () => {
     console.log(`Server on port ${app.get("port")}`);

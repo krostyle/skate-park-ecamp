@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import { sequelize } from "../database/database";
+const { Sequelize } = require('sequelize');
+const sequelize = require('../database/database');
 
 
 const Skater = sequelize.define('skater', {
@@ -36,9 +36,14 @@ const Skater = sequelize.define('skater', {
     estado: {
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    role: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'USER'
     }
 }, {
     timestamps: false
 });
 
-export default Skater;
+module.exports = Skater;
