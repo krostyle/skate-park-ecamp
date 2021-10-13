@@ -35,7 +35,8 @@ const Skater = sequelize.define('skater', {
     },
     estado: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     },
     role: {
         type: Sequelize.STRING,

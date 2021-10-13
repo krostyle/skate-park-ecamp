@@ -1,6 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
+const fileUpload = require('express-fileupload');
+const cors = require('cors')
 const path = require('path')
 const configurations = require('../config/config')
 
@@ -31,10 +33,16 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
+
+
+
 //Middleware
+app.use(fileUpload());
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 //Routes
 app.use(paths.auth, loginRoutes);
@@ -43,6 +51,8 @@ app.use('/', indexRoutes)
 
 //Static files
 app.use('/bootstrap', express.static(path.join(__dirname, '../../node_modules/bootstrap/dist')));
+app.use('/axios', express.static(path.join(__dirname, '../../node_modules/axios/dist')))
 app.use(express.static(path.join(__dirname, '../public')));
+
 
 module.exports = app;
