@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
             idle: 10000
         },
         logging: false
-    }
+    },
 );
 
 module.exports = sequelize;

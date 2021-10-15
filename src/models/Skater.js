@@ -1,7 +1,5 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../database/database');
-
-
 const Skater = sequelize.define('skater', {
     id: {
         type: Sequelize.INTEGER,
@@ -38,7 +36,7 @@ const Skater = sequelize.define('skater', {
         allowNull: false,
         defaultValue: false
     },
-    role: {
+    rol: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'USER'
