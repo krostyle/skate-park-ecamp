@@ -4,7 +4,7 @@ const { jwtValidator } = require('../middlewares/jwtValidator');
 const router = Router()
 
 router.get('/profile', [jwtValidator], renderProfile);
-router.get('/datos/:id', [jwtValidator], renderEditProfile);
+router.get('/datos/:id', renderEditProfile);
 router.get('/dashboard', [jwtValidator], renderDashboard);
 
 router.put('/datos/:id', updateSkater);

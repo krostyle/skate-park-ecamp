@@ -29,6 +29,8 @@ const renderDashboard = async(req, res) => {
         }
     })
 
+    const { password_user, ...skater } = userData.dataValues
+
     const skaters = skatersData.map((skater, index) => {
         const skaterData = skater.dataValues;
         return {
@@ -46,7 +48,8 @@ const renderDashboard = async(req, res) => {
     const { password, ...user } = userData.dataValues
     res.render('admin', {
         user,
-        skaters
+        skaters,
+        skater
     });
 }
 
