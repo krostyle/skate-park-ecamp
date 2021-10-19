@@ -1,5 +1,7 @@
 const { Router } = require('express');
-const { renderIndex } = require('../controllers/skater.controllers');
+const { renderIndex } = require('../controllers/index.controllers');
+
+
 const router = Router()
 
 

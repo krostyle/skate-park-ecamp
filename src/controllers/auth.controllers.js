@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const expfu = require('express-fileupload');
 const bcrypt = require('bcryptjs')
@@ -6,11 +5,11 @@ const Skater = require('../models/Skater');
 const { generateJWT } = require('../helpers/jwt');
 
 const renderLogin = (req, res) => {
-    res.render('partials/login');
+    res.render('login');
 }
 
 const renderRegister = (req, res) => {
-    res.render('partials/register');
+    res.render('register');
 }
 
 const createSkater = async(req, res) => {
@@ -45,22 +44,27 @@ const createSkater = async(req, res) => {
 const loginSkater = async(req, res) => {
     const { email, password } = req.body;
     try {
-        const skater = await Skater.findOne({ email });
-        if (!skater) return res.status(404).send({ message: 'El skater no existe' });
+        const skater = await Skater.findOne({
+            where: {
+                email
+            }
+        });
+        if (!skater) return res.status(404).send({ message: 'El usuario no existe', success: false });
         const validPass = bcrypt.compareSync(password, skater.password);
-        if (!validPass) return res.status(401).send({ message: 'Contraseña incorrecta' });
+        if (!validPass) return res.status(401).json({ message: 'Contraseña incorrecta', success: false });
         //JWT
-        const token = generateJWT(skater.id, skater.nombre);
+        const token = await generateJWT(skater.id, skater.nombre);
 
         skater.password = undefined;
         res.status(200).send({
-            message: 'Skater logueado',
+            message: 'Has iniciado sesión correctamente',
             token,
-            skater
+            skater,
+            success: true
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: 'Error al loguear el skater', success: false });
+        res.status(500).send({ message: 'Error al iniciar sesión', success: false });
     }
 }
 
@@ -69,4 +73,5 @@ module.exports = {
     renderLogin,
     renderRegister,
     createSkater,
+    loginSkater
 }

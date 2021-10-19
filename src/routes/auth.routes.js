@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { renderLogin, renderRegister, createSkater } = require('../controllers/auth.controllers');
+const { renderLogin, renderRegister, createSkater, loginSkater } = require('../controllers/auth.controllers');
 const router = Router()
 
 
@@ -9,6 +9,9 @@ router.get('/login', renderLogin);
 //localhost:3000/auth/register
 router.get('/register', renderRegister);
 
+//localhost:3000/auth/register
 router.post('/register', createSkater)
-    // router.post('/register/photo', uploadFile)
+
+//localhost:3000/auth/login
+router.post('/login', loginSkater)
 module.exports = router

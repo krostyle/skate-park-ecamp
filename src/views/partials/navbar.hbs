@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-1" href="/">Skate Park</a>
+      <ul class="navbar-nav ms-auto">
+    {{#if skater}}      
+        <li class="nav-item">
+          <a class="nav-link text-dark" id="cerrar_sesion" href="/">Cerrar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/api/skaters/datos/{{skater.id}}">Modificar Datos</a>
+        </li>
+    {{else}}
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/auth/login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/auth/register">Registrarse</a>
+        </li>
+    {{/if}}
+     </ul>
+    </div>
+  </div>
+</nav>
+
+  

@@ -35,7 +35,7 @@ register_form.addEventListener('submit', async(e) => {
             alert('Registrado exitosamente')
             window.location.href = '/auth/login'
         } else {
-            alert('Error al registrarse')
+            alert(res.data.message)
             register_form.reset()
         }
 
